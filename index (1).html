@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Arish | Aspiring Developer</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #070b12;
+      --bg-soft: #0b111b;
+      --card: rgba(14, 21, 33, 0.72);
+      --border: rgba(148, 163, 184, 0.15);
+      --text: #f5f7fb;
+      --muted: #8d99aa;
+      --blue: #7da7ff;
+      --purple: #9b8cff;
+      --green: #42e6a4;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================================
+       BACKGROUND
+    ========================================= */
+
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: -5;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .grid {
+      position: absolute;
+      inset: 0;
+
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+
+      background-size: 60px 60px;
+
+      mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 85%
+      );
+    }
+
+    .orb {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.12;
+    }
+
+    .orb.one {
+      background: #657eff;
+      top: -250px;
+      left: -200px;
+      animation: floatOne 12s ease-in-out infinite;
+    }
+
+    .orb.two {
+      background: #9b5cff;
+      right: -250px;
+      top: 400px;
+      animation: floatTwo 15s ease-in-out infinite;
+    }
+
+    @keyframes floatOne {
+      0%,100% {
+        transform: translate(0,0);
+      }
+
+      50% {
+        transform: translate(100px,70px);
+      }
+    }
+
+    @keyframes floatTwo {
+      0%,100% {
+        transform: translate(0,0);
+      }
+
+      50% {
+        transform: translate(-100px,-80px);
+      }
+    }
+
+    /* =========================================
+       NAVBAR
+    ========================================= */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 74px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 6%;
+
+      background: rgba(7, 11, 18, 0.72);
+      backdrop-filter: blur(18px);
+
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #aeb8c8;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .resume-nav {
+      padding: 10px 17px;
+      border: 1px solid rgba(125,167,255,0.4);
+      border-radius: 30px;
+
+      font-size: 12px;
+
+      transition: 0.3s;
+    }
+
+    .resume-nav:hover {
+      background: rgba(125,167,255,0.1);
+      transform: translateY(-2px);
+    }
+
+    /* =========================================
+       HERO
+    ========================================= */
+
+    .hero {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 120px 8% 70px;
+
+      position: relative;
+      gap: 70px;
+    }
+
+    .hero-content {
+      max-width: 650px;
+      animation: heroIn 1s ease forwards;
+    }
+
+    @keyframes heroIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hello {
+      color: #b9c3d4;
+      font-size: 15px;
+      margin-bottom: 14px;
+    }
+
+    .hello span {
+      color: var(--blue);
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 7vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -4px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(
+        90deg,
+        #fff,
+        #8baaff,
+        #b69cff
+      );
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      background-size: 200%;
+      animation: gradientText 5s linear infinite;
+    }
+
+    @keyframes gradientText {
+      0% {
+        background-position: 0%;
+      }
+
+      100% {
+        background-position: 200%;
+      }
+    }
+
+    .role {
+      font-size: 19px;
+      color: #d9deea;
+      margin-bottom: 22px;
+    }
+
+    .role span {
+      color: var(--blue);
+      margin: 0 10px;
+    }
+
+    .description {
+      color: var(--muted);
+      max-width: 570px;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      margin-top: 34px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 13px 22px;
+      border-radius: 30px;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(
+        100deg,
+        #8baaff,
+        #9b8cff
+      );
+
+      color: #070b12;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(125,167,255,0.2);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(148,163,184,0.25);
+      color: white;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--blue);
+      transform: translateY(-4px);
+    }
+
+    /* =========================================
+       TERMINAL
+    ========================================= */
+
+    .terminal {
+      width: min(480px, 100%);
+      min-width: 350px;
+
+      background: rgba(10, 16, 26, 0.82);
+      border: 1px solid rgba(148,163,184,0.2);
+
+      border-radius: 15px;
+
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.45),
+        inset 0 1px rgba(255,255,255,0.04);
+
+      overflow: hidden;
+
+      animation:
+        terminalIn 1s ease forwards,
+        terminalFloat 6s ease-in-out 1s infinite;
+    }
+
+    @keyframes terminalIn {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes terminalFloat {
+      0%,100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .terminal-top {
+      height: 43px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+
+      padding: 0 15px;
+
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+
+    .red {
+      background: #ff6565;
+    }
+
+    .yellow {
+      background: #ffd15c;
+    }
+
+    .green {
+      background: #4fe39c;
+    }
+
+    .terminal-title {
+      margin-left: 8px;
+      color: #778398;
+      font-size: 11px;
+    }
+
+    .terminal-body {
+      padding: 25px;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 2;
+      min-height: 300px;
+    }
+
+    .terminal-green {
+      color: #45e6a2;
+    }
+
+    .terminal-blue {
+      color: #86aaff;
+    }
+
+    .terminal-gray {
+      color: #788499;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 7px;
+      height: 15px;
+      background: #9db5ff;
+      vertical-align: middle;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* =========================================
+       SECTIONS
+    ========================================= */
+
+    section {
+      padding: 100px 8%;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .section-label {
+      color: var(--blue);
+      font-size: 11px;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-size: 38px;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+
+    .section-description {
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 650px;
+      font-size: 14px;
+    }
+
+    /* =========================================
+       ABOUT
+    ========================================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 15px;
+      margin-top: 20px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 12px;
+      margin-top: 35px;
+    }
+
+    .info-card {
+      padding: 20px 15px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(125,167,255,0.35);
+    }
+
+    .info-card i {
+      color: var(--blue);
+      margin-bottom: 15px;
+    }
+
+    .info-card small {
+      display: block;
+      color: #697588;
+      font-size: 10px;
+      margin-bottom: 5px;
+    }
+
+    .info-card strong {
+      font-size: 12px;
+    }
+
+    /* =========================================
+       SKILLS
+    ========================================= */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 12px;
+      margin-top: 40px;
+    }
+
+    .skill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      padding: 17px;
+
+      border: 1px solid var(--border);
+      background: var(--card);
+
+      border-radius: 12px;
+
+      transition: 0.3s;
+    }
+
+    .skill:hover {
+      transform: translateY(-5px) scale(1.01);
+      border-color: rgba(125,167,255,0.35);
+      background: rgba(125,167,255,0.05);
+    }
+
+    .skill-icon {
+      width: 35px;
+      height: 35px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 9px;
+
+      background: rgba(125,167,255,0.08);
+      color: var(--blue);
+    }
+
+    .skill span {
+      font-size: 12px;
+    }
+
+    /* =========================================
+       PROJECTS
+    ========================================= */
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+      margin-top: 45px;
+    }
+
+    .project {
+      padding: 25px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.045),
+          rgba(255,255,255,0.015)
+        );
+
+      border: 1px solid var(--border);
+
+      border-radius: 15px;
+
+      position: relative;
+      overflow: hidden;
+
+      transition: 0.4s;
+    }
+
+    .project::before {
+      content: "";
+      position: absolute;
+
+      width: 150px;
+      height: 150px;
+
+      border-radius: 50%;
+
+      background: #789aff;
+
+      filter: blur(80px);
+
+      opacity: 0;
+
+      top: -80px;
+      right: -80px;
+
+      transition: 0.4s;
+    }
+
+    .project:hover {
+      transform: translateY(-8px);
+      border-color: rgba(125,167,255,0.3);
+    }
+
+    .project:hover::before {
+      opacity: 0.15;
+    }
+
+    .project-number {
+      color: var(--blue);
+      font-size: 11px;
+      margin-bottom: 25px;
+    }
+
+    .project h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .project p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      padding: 5px 9px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      color: #9da8b8;
+      font-size: 10px;
+    }
+
+    .project-links {
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #aeb9c9;
+    }
+
+    .project-links a:hover {
+      color: var(--blue);
+    }
+
+    /* =========================================
+       DEVOPS
+    ========================================= */
+
+    .devops-box {
+      margin-top: 40px;
+
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.025);
+
+      border-radius: 15px;
+
+      padding: 30px;
+
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .dev-tool {
+      text-align: center;
+      min-width: 100px;
+    }
+
+    .dev-tool i {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--blue);
+    }
+
+    .dev-tool span {
+      color: #a5afbf;
+      font-size: 12px;
+    }
+
+    /* =========================================
+       AUTOMATION
+    ========================================= */
+
+    .automation-flow {
+      margin-top: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .flow-node {
+      padding: 17px 23px;
+
+      border: 1px solid var(--border);
+      background: var(--card);
+
+      border-radius: 10px;
+
+      font-size: 12px;
+
+      position: relative;
+    }
+
+    .flow-node::after {
+      content: "→";
+
+      position: absolute;
+      right: -19px;
+      color: var(--blue);
+    }
+
+    .flow-node:last-child::after {
+      display: none;
+    }
+
+    .flow-node.active {
+      border-color: rgba(66,230,164,0.4);
+      color: var(--green);
+    }
+
+    /* =========================================
+       TIMELINE
+    ========================================= */
+
+    .timeline {
+      margin-top: 45px;
+      border-left: 1px solid rgba(125,167,255,0.3);
+      padding-left: 30px;
+      max-width: 800px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 35px;
+    }
+
+    .timeline-item::before {
+      content: "";
+
+      position: absolute;
+
+      width: 8px;
+      height: 8px;
+
+      background: var(--blue);
+
+      border-radius: 50%;
+
+      left: -35px;
+      top: 5px;
+
+      box-shadow: 0 0 15px rgba(125,167,255,0.5);
+    }
+
+    .timeline-date {
+      color: var(--blue);
+      font-size: 11px;
+      margin-bottom: 7px;
+    }
+
+    .timeline-item h3 {
+      font-size: 15px;
+      margin-bottom: 7px;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    /* =========================================
+       RESUME
+    ========================================= */
+
+    .resume-box {
+      margin-top: 40px;
+
+      padding: 50px;
+
+      border: 1px solid var(--border);
+
+      background:
+        linear-gradient(
+          120deg,
+          rgba(125,167,255,0.06),
+          rgba(155,140,255,0.03)
+        );
+
+      border-radius: 18px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
+    }
+
+    .resume-box h3 {
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    .resume-box p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* =========================================
+       CONTACT
+    ========================================= */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      margin-top: 45px;
+    }
+
+    .contact-card {
+      padding: 25px;
+
+      border: 1px solid var(--border);
+      background: var(--card);
+
+      border-radius: 14px;
+
+      display: flex;
+      align-items: center;
+      gap: 18px;
+
+      margin-bottom: 12px;
+
+      transition: 0.3s;
+    }
+
+    .contact-card:hover {
+      transform: translateX(7px);
+      border-color: rgba(125,167,255,0.3);
+    }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 10px;
+
+      background: rgba(125,167,255,0.08);
+      color: var(--blue);
+    }
+
+    .contact-card small {
+      color: #667285;
+      display: block;
+      font-size: 10px;
+      margin-bottom: 5px;
+    }
+
+    .contact-card strong {
+      font-size: 13px;
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+
+    footer {
+      padding: 25px 8%;
+
+      border-top: 1px solid rgba(255,255,255,0.05);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      color: #626d7d;
+
+      font-size: 11px;
+    }
+
+    footer span {
+      color: var(--blue);
+    }
+
+    /* =========================================
+       SCROLL ANIMATION
+    ========================================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: 0.8s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 950px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 130px;
+      }
+
+      .terminal {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .resume-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 550px) {
+
+      nav {
+        padding: 0 5%;
+      }
+
+      .resume-nav {
+        display: none;
+      }
+
+      section {
+        padding: 75px 6%;
+      }
+
+      .hero {
+        padding-left: 6%;
+        padding-right: 6%;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        letter-spacing: -2px;
+      }
+
+      .role {
+        font-size: 16px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .terminal-body {
+        font-size: 11px;
+      }
+
+      .flow-node::after {
+        display: none;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BACKGROUND -->
+  <div class="background">
+    <div class="grid"></div>
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+  </div>
+
+
+  <!-- NAVBAR -->
+  <nav>
+
+    <a href="#home" class="logo">
+      Ar<span>ish</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#devops">DevOps</a></li>
+      <li><a href="#automation">Automation</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <a
+      href="Arish_Resume.docx"
+      download
+      class="resume-nav"
+    >
+      ↓ Download Resume
+    </a>
+
+  </nav>
+
+
+  <!-- HERO -->
+  <main id="home">
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <div class="hello">
+          Hello, I'm <span>→</span>
+        </div>
+
+        <h1>
+          Arish
+        </h1>
+
+        <div class="role">
+          Aspiring Developer
+          <span>|</span>
+          AI &amp; Data Science
+        </div>
+
+        <p class="description">
+          Final-year B.Tech (AI &amp; Data Science) student focused on Python, SQL,
+          Linux, AWS and workflow automation. I build practical software
+          solutions and AI-powered automation systems.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a href="#projects" class="btn btn-primary">
+            View Projects
+            <i data-lucide="arrow-right"></i>
+          </a>
+
+          <a
+            href="resume.pdf"
+            download
+            class="btn btn-outline"
+          >
+            Download Resume
+            <i data-lucide="download"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- TERMINAL -->
+      <div class="terminal">
+
+        <div class="terminal-top">
+
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+
+          <div class="terminal-title">
+            ~/profile
+          </div>
+
+        </div>
+
+        <div class="terminal-body">
+
+          <div>
+            <span class="terminal-green">
+              arish@dev:~$
+            </span>
+            skills
+          </div>
+
+          <div class="terminal-gray">
+            ─────────────────────────
+          </div>
+
+          <div>
+            <span class="terminal-blue">◉</span>
+            AWS
+          </div>
+
+          <div>
+            <span class="terminal-blue">◉</span>
+            Docker
+          </div>
+
+          <div>
+            <span class="terminal-blue">◉</span>
+            Linux
+          </div>
+
+          <div>
+            <span class="terminal-blue">◉</span>
+            React
+          </div>
+
+          <div>
+            <span class="terminal-blue">◉</span>
+            Node.js
+          </div>
+
+          <div>
+            <span class="terminal-blue">◉</span>
+            Git & GitHub
+          </div>
+
+          <div>
+            <span class="terminal-blue">◉</span>
+            n8n Automation
+          </div>
+
+          <div>
+            <span class="terminal-blue">◉</span>
+            PostgreSQL
+          </div>
+
+          <br>
+
+          <div>
+            <span class="terminal-green">
+              ranjith@dev:~$
+            </span>
+
+            <span class="cursor"></span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+
+      <div class="about-grid">
+
+        <div class="about-text">
+
+          <div class="section-label">
+            01. About Me
+          </div>
+
+          <h2 class="section-title">
+            Who I Am
+          </h2>
+
+          <p>
+            I'm Arish Kumar, a B.Tech AI & DS student
+            interested in Full Stack Development, DevOps
+            and Automation.
+          </p>
+
+          <p>
+            I enjoy learning new technologies, building
+            useful projects and solving real-world problems
+            through software and cloud technologies.
+          </p>
+
+          <div class="info-grid">
+
+            <div class="info-card">
+              <i data-lucide="map-pin"></i>
+              <small>Location</small>
+              <strong>Tamil Nadu, India</strong>
+            </div>
+
+            <div class="info-card">
+              <i data-lucide="graduation-cap"></i>
+              <small>Education</small>
+              <strong>B.Tech AI & DS</strong>
+            </div>
+
+            <div class="info-card">
+              <i data-lucide="target"></i>
+              <small>Focus</small>
+              <strong>AI, Python &amp; Automation</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <div class="section-label">
+            02. My Skills
+          </div>
+
+          <h2 class="section-title">
+            Technical Skills
+          </h2>
+
+          <div class="skills-grid">
+
+            <div class="skill">
+              <div class="skill-icon">
+                <i data-lucide="code-2"></i>
+              </div>
+              <span>Python</span>
+            </div>
+
+            <div class="skill">
+              <div class="skill-icon">
+                <i data-lucide="palette"></i>
+              </div>
+              <span>SQL</span>
+            </div>
+
+            <div class="skill">
+              <div class="skill-icon">
+                <i data-lucide="braces"></i>
+              </div>
+              <span>Email Automation</span>
+            </div>
+
+            <div class="skill">
+              <div class="skill-icon">
+                <i data-lucide="atom"></i>
+              </div>
+              <span>Automation</span>
+            </div>
+
+            <div class="skill">
+              <div class="skill-icon">
+                <i data-lucide="server"></i>
+              </div>
+              <span>Applicant Tracking</span>
+            </div>
+
+            <div class="skill">
+              <div class="skill-icon">
+                <i data-lucide="database"></i>
+              </div>
+              <span>OpenAI API</span>
+            </div>
+
+            <div class="skill">
+              <div class="skill-icon">
+                <i data-lucide="database"></i>
+              </div>
+              <span>Excel</span>
+            </div>
+
+            <div class="skill">
+              <div class="skill-icon">
+                <i data-lucide="cloud"></i>
+              </div>
+              <span>AWS</span>
+            </div>
+
+            <div class="skill">
+              <div class="skill-icon">
+                <i data-lucide="box"></i>
+              </div>
+              <span>AI</span>
+            </div>
+
+            <div class="skill">
+              <div class="skill-icon">
+                <i data-lucide="terminal"></i>
+              </div>
+              <span>Linux</span>
+            </div>
+
+            <div class="skill">
+              <div class="skill-icon">
+                <i data-lucide="git-branch"></i>
+              </div>
+              <span>Workflow Automation</span>
+            </div>
+
+            <div class="skill">
+              <div class="skill-icon">
+                <i data-lucide="workflow"></i>
+              </div>
+              <span>n8n</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal">
+
+      <div class="section-label">
+        03. My Projects
+      </div>
+
+      <h2 class="section-title">
+        Featured Projects
+      </h2>
+
+      <p class="section-description">
+        Here are some of the projects I've built while
+        improving my skills in full-stack development,
+        DevOps and automation.
+      </p>
+
+
+      <div class="projects">
+
+
+        <!-- PROJECT 1 -->
+        <article class="project">
+          <div class="project-number">PROJECT / 01</div>
+          <h3>AI-Powered ATS</h3>
+          <p>
+            End-to-end AI resume screening workflow that automatically parses
+            resumes, scores candidates against a job description, shortlists
+            matches and sends email notifications.
+          </p>
+          <div class="tags">
+            <span class="tag">n8n</span>
+            <span class="tag">OpenAI API</span>
+            <span class="tag">Email Automation</span>
+            <span class="tag">AI</span>
+          </div>
+          <div class="project-links">
+            <a href="#contact">View Details ↗</a>
+            <a href="#contact">Contact ↗</a>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-number">FOCUS / 02</div>
+          <h3>AI & Data Science</h3>
+          <p>
+            Building practical software and automation solutions while
+            developing skills in Python, SQL, Linux, AWS and AI technologies.
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+            <span class="tag">AWS</span>
+            <span class="tag">AI</span>
+          </div>
+          <div class="project-links">
+            <a href="#skills">Skills ↗</a>
+            <a href="#contact">Connect ↗</a>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-number">FOCUS / 03</div>
+          <h3>Workflow Automation</h3>
+          <p>
+            Creating automated workflows that connect forms, AI models,
+            application logic and email notifications to reduce repetitive work.
+          </p>
+          <div class="tags">
+            <span class="tag">n8n</span>
+            <span class="tag">OpenAI API</span>
+            <span class="tag">Automation</span>
+            <span class="tag">Email</span>
+          </div>
+          <div class="project-links">
+            <a href="#automation">Workflow ↗</a>
+            <a href="#contact">Connect ↗</a>
+          </div>
+        </article>
+      </div>
+
+    </section>
+
+
+    <!-- DEVOPS -->
+    <section id="devops" class="reveal">
+
+      <div class="section-label">
+        04. DevOps
+      </div>
+
+      <h2 class="section-title">
+        DevOps & Cloud
+      </h2>
+
+      <p class="section-description">
+        Learning and working with modern DevOps tools
+        and cloud platforms to deploy reliable and
+        scalable applications.
+      </p>
+
+
+      <div class="devops-box">
+        <div class="dev-tool">
+          <i data-lucide="cloud"></i>
+          <span>AWS</span>
+        </div>
+        <div class="dev-tool">
+          <i data-lucide="terminal"></i>
+          <span>Linux</span>
+        </div>
+        <div class="dev-tool">
+          <i data-lucide="workflow"></i>
+          <span>n8n</span>
+        </div>
+        <div class="dev-tool">
+          <i data-lucide="database"></i>
+          <span>SQL</span>
+        </div>
+        <div class="dev-tool">
+          <i data-lucide="code-2"></i>
+          <span>Python</span>
+        </div>
+        <div class="dev-tool">
+          <i data-lucide="table"></i>
+          <span>Excel</span>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- AUTOMATION -->
+    <section id="automation" class="reveal">
+
+      <div class="section-label">
+        05. Automation
+      </div>
+
+      <h2 class="section-title">
+        AI & Workflow Automation
+      </h2>
+
+      <p class="section-description">
+        I use automation tools to connect APIs,
+        databases and AI models to create smart
+        workflows.
+      </p>
+
+
+      <div class="automation-flow">
+        <div class="flow-node">Resume Submission</div>
+        <div class="flow-node">n8n</div>
+        <div class="flow-node active">OpenAI</div>
+        <div class="flow-node">Match Score</div>
+        <div class="flow-node">Shortlist</div>
+        <div class="flow-node">Email</div>
+      </div>
+
+    </section>
+
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="reveal">
+
+      <div class="section-label">
+        06. Experience / Learning Journey
+      </div>
+
+      <h2 class="section-title">
+        My Journey
+      </h2>
+
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2026 — Present</div>
+          <h3>AI & Automation Development</h3>
+          <p>
+            Building practical automation workflows with n8n, OpenAI API and
+            email automation, including an AI-powered resume screening system.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2026 — Present</div>
+          <h3>Cloud & Systems</h3>
+          <p>
+            Developing hands-on skills with AWS and Linux while applying them
+            to software and automation projects.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2023 — 2027</div>
+          <h3>B.Tech — AI & Data Science</h3>
+          <p>
+            Studying Artificial Intelligence and Data Science at Tagore
+            Institute of Engineering and Technology.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Current Focus</div>
+          <h3>Python & SQL</h3>
+          <p>
+            Strengthening programming and database skills for entry-level
+            developer opportunities.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- RESUME -->
+    <section class="reveal">
+
+      <div class="section-label">
+        07. Resume
+      </div>
+
+      <div class="resume-box">
+
+        <div>
+
+          <h3>
+            Want to know more?
+          </h3>
+
+          <p>
+            Download my complete resume to explore
+            my skills, projects and experience.
+          </p>
+
+        </div>
+
+        <a
+          href="resume.pdf"
+          download
+          class="btn btn-primary"
+        >
+          Download Resume
+          <i data-lucide="download"></i>
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+
+      <div class="section-label">
+        08. Contact
+      </div>
+
+      <h2 class="section-title">
+        Get In Touch
+      </h2>
+
+      <p class="section-description">
+        I'm open to opportunities, collaborations
+        and interesting projects.
+      </p>
+
+
+      <div class="contact-grid">
+
+        <div>
+
+          <a
+            href="mailto:arish180924@gmail.com"
+            class="contact-card"
+          >
+
+            <div class="contact-icon">
+              <i data-lucide="mail"></i>
+            </div>
+
+            <div>
+              <small>Email</small>
+              <strong>
+                arish180924@gmail.com
+              </strong>
+            </div>
+
+          </a>
+
+
+          <a
+            href="https://github.com/"
+            target="_blank"
+            class="contact-card"
+          >
+
+            <div class="contact-icon">
+              <i data-lucide="github"></i>
+            </div>
+
+            <div>
+              <small>GitHub</small>
+              <strong>
+                GitHub profile — add your link
+              </strong>
+            </div>
+
+          </a>
+
+        </div>
+
+
+        <div>
+
+          <a
+            href="https://linkedin.com/"
+            target="_blank"
+            class="contact-card"
+          >
+
+            <div class="contact-icon">
+              <i data-lucide="linkedin"></i>
+            </div>
+
+            <div>
+              <small>LinkedIn</small>
+              <strong>
+                LinkedIn profile — add your link
+              </strong>
+            </div>
+
+          </a>
+
+
+          <div class="contact-card">
+
+            <div class="contact-icon">
+              <i data-lucide="map-pin"></i>
+            </div>
+
+            <div>
+              <small>Location</small>
+              <strong>
+                Tamil Nadu, India
+              </strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div>
+      <span>Arish</span>
+      &nbsp; • &nbsp;
+      Build
+      &nbsp; • &nbsp;
+      Automate
+      &nbsp; • &nbsp;
+      Deploy
+    </div>
+
+    <div>
+      © 2026 Arish
+    </div>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    /* Lucide Icons */
+    lucide.createIcons();
+
+
+    /* Scroll Reveal */
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach((entry) => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add("show");
+
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach((element) => {
+
+        observer.observe(element);
+
+      });
+
+
+    /* Active Navbar */
+
+    const sections =
+      document.querySelectorAll("section[id]");
+
+    const navLinks =
+      document.querySelectorAll(".nav-links a");
+
+
+    window.addEventListener("scroll", () => {
+
+      let current = "";
+
+      sections.forEach((section) => {
+
+        const sectionTop =
+          section.offsetTop - 150;
+
+        if (
+          window.scrollY >= sectionTop
+        ) {
+
+          current =
+            section.getAttribute("id");
+
+        }
+
+      });
+
+
+      navLinks.forEach((link) => {
+
+        link.style.color = "";
+
+        if (
+          link.getAttribute("href") ===
+          "#" + current
+        ) {
+
+          link.style.color = "#7da7ff";
+
+        }
+
+      });
+
+    });
+
+
+    /* Terminal typing effect */
+
+    const terminalLines = [
+      "Python",
+      "SQL",
+      "Linux",
+      "AWS",
+      "n8n",
+      "OpenAI API",
+      "Excel",
+      "Email Automation"
+    ];
+
+    let index = 0;
+
+    setInterval(() => {
+
+      index++;
+
+      if (index >= terminalLines.length) {
+        index = 0;
+      }
+
+    }, 2000);
+
+  </script>
+
+</body>
+</html>
